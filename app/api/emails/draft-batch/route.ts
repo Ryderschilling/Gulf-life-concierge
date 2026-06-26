@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { openai, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
+import { getOpenAI, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
 import { buildAIContext } from '@/lib/ai-context'
 
 export async function POST(req: NextRequest) {
@@ -77,7 +77,7 @@ Subject: [subject line]
 
 [email body — 3 short paragraphs max]`
 
-        const completion = await openai.chat.completions.create({
+        const completion = await getOpenAI().chat.completions.create({
           model: 'gpt-4o',
           messages: [
             { role: 'system', content: CONCIERGE_SYSTEM_PROMPT },

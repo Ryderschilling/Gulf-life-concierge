@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { openai, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
+import { getOpenAI, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
 import type { Lead, DigestContent, DigestStats } from '@/lib/types'
 
 const TODAY = new Date().toISOString().split('T')[0] // YYYY-MM-DD
@@ -132,7 +132,7 @@ Return a JSON object with this exact structure (no markdown, just raw JSON):
   "action_items": ["Action 1", "Action 2", "Action 3"]
 }`
 
-  const completion = await openai.chat.completions.create({
+  const completion = await getOpenAI().chat.completions.create({
     model: 'gpt-4o',
     messages: [
       { role: 'system', content: CONCIERGE_SYSTEM_PROMPT },

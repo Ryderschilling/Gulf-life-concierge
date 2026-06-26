@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { openai, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
+import { getOpenAI, CONCIERGE_SYSTEM_PROMPT } from '@/lib/openai'
 import type { Lead, LeadAddress, LeadActivity, EmailDraftTrigger } from '@/lib/types'
 
 export async function POST(req: NextRequest) {
@@ -95,7 +95,7 @@ Subject: [subject line]
 
 Keep it warm, personal, concise — 3 short paragraphs max. End with an easy next step. Do not include a signature — that will be added separately.`
 
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
       messages: [
         { role: 'system', content: CONCIERGE_SYSTEM_PROMPT },

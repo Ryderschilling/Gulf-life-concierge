@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { openai } from '@/lib/openai'
+import { getOpenAI } from '@/lib/openai'
 
 export async function POST(req: NextRequest) {
   try {
@@ -53,7 +53,7 @@ Extract concrete, reusable style corrections in this JSON format:
 
 Only include meaningful changes. If the edits are trivial (fixing a typo), return empty corrections array.`
 
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: 'gpt-4o',
       messages: [{ role: 'user', content: analysisPrompt }],
       temperature: 0.3,

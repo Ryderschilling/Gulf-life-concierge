@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
-import { resend, FROM } from '@/lib/resend'
+import { getResend, FROM } from '@/lib/resend'
 
 export async function POST(req: NextRequest) {
   try {
@@ -58,7 +58,7 @@ Gulf Life Concierge
 🌊 livegulflife.com`
 
     // Send via Resend
-    const { data: sent, error: sendError } = await resend.emails.send({
+    const { data: sent, error: sendError } = await getResend().emails.send({
       from: FROM,
       to: [draft.to_email],
       subject: finalSubject,
