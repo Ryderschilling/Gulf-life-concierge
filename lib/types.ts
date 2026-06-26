@@ -34,6 +34,15 @@ export type LeadSource =
   | 'email'
   | 'other'
 
+export interface KanbanColumn {
+  status: LeadStatus
+  label: string
+  color: string
+  bgColor: string
+  borderColor: string
+  leads: Lead[]
+}
+
 export interface DashboardStats {
   total_leads: number
   new_leads: number
