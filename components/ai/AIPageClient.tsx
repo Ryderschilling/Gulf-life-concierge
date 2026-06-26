@@ -172,9 +172,8 @@ export default function AIPageClient({ initialContextFiles, initialMemories }: P
                           padding: '8px 10px', borderRadius: '7px', cursor: 'pointer', marginBottom: '1px',
                           background: active ? '#0a0a0a' : 'transparent',
                           display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px',
-                          group: 'true',
                         }}
-                        className="conv-row"
+                        className="conv-row group"
                       >
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
