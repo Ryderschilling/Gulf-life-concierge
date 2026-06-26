@@ -26,6 +26,25 @@ export type LeadStatus =
   | 'closed_won'
   | 'closed_lost'
 
+export type LeadSource =
+  | 'website'
+  | 'referral'
+  | 'cold_call'
+  | 'social'
+  | 'email'
+  | 'other'
+
+export interface DashboardStats {
+  total_leads: number
+  new_leads: number
+  contacted: number
+  nurturing: number
+  proposals: number
+  closed_won: number
+  closed_lost: number
+  conversion_rate: number
+}
+
 export const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
   new: 'New',
   contacted: 'Contacted',
